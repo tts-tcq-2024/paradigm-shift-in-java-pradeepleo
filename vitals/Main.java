@@ -29,6 +29,9 @@ public class Main {
     public static void main(String[] args) {
         assert(batteryIsOk(25, 70, 0.7f) == true);
         assert(batteryIsOk(50, 85, 0.0f) == false);
+        assert(batteryIsOk(50, 85, 0.9f) == false);
+        assert(batteryIsOk(23, 85, 0.9f) == false);
+        assert(batteryIsOk(43, 56, 0.9f) == false);
         System.out.println("Some more tests needed");
     }
 }
