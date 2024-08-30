@@ -2,14 +2,25 @@ package vitals;
 
 public class Main {
     static boolean batteryIsOk(float temperature, float soc, float chargeRate) {
-        if(temperature < 0 || temperature > 45) {
+        return temperatureIsOk(temperature) && socIsOk(soc) && chargeRateIsOk(chargeRate);
+    }
+    static boolean temperatureIsOk(float temperature) {
+       if(temperature < 0 || temperature > 45) {
             System.out.println("Temperature is out of range!");
             return false;
-        } else if(soc < 20 || soc > 80) {
+        }
+        return true;
+    }
+    static boolean socIsOk(float soc) {
+        if(soc < 20 || soc > 80){
             System.out.println("State of Charge is out of range!");
             return false;
-        } else if(chargeRate > 0.8) {
-            System.out.println("Charge Rate is out of range!");
+        }
+        return true;
+    }
+    static boolean chargeRateIsOk(float chargeRate) {
+        if(chargeRate > 0.8){
+            System.out.println("State of Charge is out of range!");
             return false;
         }
         return true;
