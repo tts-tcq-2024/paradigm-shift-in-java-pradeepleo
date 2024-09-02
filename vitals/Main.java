@@ -1,30 +1,29 @@
 package vitals;
 
 public class Main {
-    static boolean batteryIsOk(float temperature, float soc, float chargeRate) {
-        return temperatureIsOk(temperature) && socIsOk(soc) && chargeRateIsOk(chargeRate);
-    }
-    static boolean temperatureIsOk(float temperature) {
-       if(temperature < 0 || temperature > 45) {
-            System.out.println("Temperature is out of range!");
-            return false;
-        }
-        return true;
+  static boolean temperatureIsOk(float temperature) {
+        return (temperature >= 0 && temperature <= 45);
     }
     static boolean socIsOk(float soc) {
-        if(soc < 20 || soc > 80){
-            System.out.println("State of Charge is out of range!");
-            return false;
-        }
-        return true;
+        return (soc >=20 && soc <=80);
     }
     static boolean chargeRateIsOk(float chargeRate) {
-        if(chargeRate > 0.8){
-            System.out.println("State of Charge is out of range!");
-            return false;
-        }
-        return true;
+        return (chargeRate <= 0.8);
     }
+    static void displayValidation(String property, boolean ValidationStatus){
+        System.out.println(property + (ValidationStatus ? " is Ok" : " is Not Ok"));
+    }
+    
+    static boolean batteryIsOk(float temperature, float soc, float chargeRate) {
+        boolean isTempOk = temperatureIsOk(temperature);
+        boolean issocIsOk = socIsOk(soc);
+        boolean ischargeRateOk = chargeRateIsOk(chargeRate);
+        displayValidation("temperature", isTempOk);
+        displayValidation("State of charge", issocIsOk);
+        displayValidation("ChargeRate", ischargeRateOk);
+        return isTempOk && issocIsOk && ischargeRateOk;
+    }
+
 
     public static void main(String[] args) {
         assert(batteryIsOk(25, 70, 0.7f) == true);
