@@ -18,26 +18,34 @@ public class Main {
     static boolean chargeRateWarningEnabled = true;
 
     // Check if temperature is within limits
-    static boolean temperatureIsOk(float temperature) {
-        if (temperature >= TEMPERATURE_LOWER_LIMIT && temperature <= TEMPERATURE_UPPER_LIMIT) {
-            if (temperatureWarningEnabled) {
-                checkWarningForTemperature(temperature);
-            }
-            return true;
-        }
-        return false;
+static boolean temperatureIsOk(float temperature) {
+    boolean isWithinLimit = isWithinTemperatureLimit(temperature);
+    if (temperatureWarningEnabled && isWithinLimit) {
+        checkWarningForTemperature(temperature);
     }
+    return isWithinLimit;
+}
+
+// Helper function to check if temperature is within limit
+static boolean isWithinTemperatureLimit(float temperature) {
+    return temperature >= TEMPERATURE_LOWER_LIMIT && temperature <= TEMPERATURE_UPPER_LIMIT;
+}
+
 
     // Check if SoC is within limits
-    static boolean socIsOk(float soc) {
-        if (soc >= SOC_LOWER_LIMIT && soc <= SOC_UPPER_LIMIT) {
-            if (socWarningEnabled) {
-                checkWarningForSoC(soc);
-            }
-            return true;
-        }
-        return false;
+static boolean socIsOk(float soc) {
+    boolean isWithinLimit = isWithinSoCLimit(soc);
+    if (socWarningEnabled && isWithinLimit) {
+        checkWarningForSoC(soc);
     }
+    return isWithinLimit;
+}
+
+// Helper function to check if SoC is within limit
+static boolean isWithinSoCLimit(float soc) {
+    return soc >= SOC_LOWER_LIMIT && soc <= SOC_UPPER_LIMIT;
+}
+
 
     // Check if charge rate is within limits
     static boolean chargeRateIsOk(float chargeRate) {
