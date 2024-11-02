@@ -32,7 +32,7 @@ static boolean isWithinTemperatureLimit(float temperature) {
 }
 
 
-    // Check if SoC is within limits
+// Check if SoC is within limits
 static boolean socIsOk(float soc) {
     boolean isWithinLimit = isWithinSoCLimit(soc);
     if (socWarningEnabled && isWithinLimit) {
